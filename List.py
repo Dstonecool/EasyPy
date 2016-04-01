@@ -9,7 +9,7 @@ class List(list):
 				return i
 		return -1
 
-	def split(self,Separator = None,method = None,included = None):
+	def split(self,Separator = None,method = None,exclusive = False):
 
 		compare = lambda x:x==Separator
 		if method:
@@ -19,8 +19,8 @@ class List(list):
 			if len(ls):group.append(ls)
 			return group
 
-		next = lambda x:x+1 
-		if included:
+		next = lambda x:x+1
+		if exclusive == False:
 			next = lambda x:x
 
 		group = []
@@ -48,13 +48,12 @@ class List(list):
 
 if __name__ == '__main__':
 
-	ls = List()
-	ls = List([1,2,6,3,1,4,1,5,1,6,7,1])
-
-	print ls.split(1)
-	print ls.split(1,included = True)
-	print ls.split()
-	print ls.split(method = lambda x: x%2)
-	print ls.split(method = lambda x:x==6)	
-	print ls.group(lambda x:x>=4)
-
+  i = [1,2,6,3,1,4,1,5,1,6,7,1]
+  ls = List(i)
+  print i
+  print ls.split(1)
+  print ls.split(1,exclusive = True)
+  print ls.split()
+  print ls.split(method = lambda x: x%2)
+  print ls.split(method = lambda x:x==6)
+  print ls.group(lambda x:x>=4)
